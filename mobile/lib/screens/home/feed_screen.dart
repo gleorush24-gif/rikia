@@ -235,9 +235,13 @@ class _FeedScreenState extends State<FeedScreen> {
                       if (captionController.text.isEmpty &&
                           imageUrlController.text.isEmpty &&
                           videoUrlController.text.isEmpty) return;
+                      String imageUrl = '';
+                      if (imageUrlController.text.startsWith('data:')) {
+                        imageUrl = await ApiService.uploadImage(imageUrlController.text) ?? '';
+                      }
                       await ApiService.createPost(
                         caption: captionController.text,
-                        imageUrl: imageUrlController.text,
+                        imageUrl: imageUrl,
                         location: locationController.text,
                       );
                       if (!context.mounted) return;

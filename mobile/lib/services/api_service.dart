@@ -136,4 +136,9 @@ class ApiService {
 
   static Future<Map<String, dynamic>> getNotifications() async =>
       get('/notifications');
+
+  static Future<String?> uploadImage(String base64Image) async {
+    final result = await post('/upload', body: {'image': base64Image});
+    return result['url'];
+  }
 }
