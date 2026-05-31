@@ -12,53 +12,64 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 0;
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
 
-  final List<Widget> _screens = [
-    const FeedScreen(),
-    const SearchScreen(),
-    const NotificationsScreen(),
-    const ProfileScreen(),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 4, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: _screens[_currentIndex],
-      bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-          border: Border(
-            top: BorderSide(color: const Color(0xFFE5E7EB), width: 0.5),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: ShaderMask(
+          shaderCallback: (bounds) =>
+              RikiaTheme.mainGradient.createShader(bounds),
+          child: const Text(
+            'RIKIA',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.w900,
+              color: Colors.white,
+              letterSpacing: 4,
+            ),
           ),
         ),
-        child: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: (index) => setState(() => _currentIndex = index),
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
-              activeIcon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.search_outlined),
-              activeIcon: Icon(Icons.search),
-              label: 'Search',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.notifications_outlined),
-              activeIcon: Icon(Icons.notifications),
-              label: 'Alerts',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline),
-              activeIcon: Icon(Icons.person),
-              label: 'Profile',
-            ),
+        bottom: TabBar(
+          controller: _tabController,
+          indicatorColor: RikiaTheme.purple,
+          indicatorWeight: 3,
+          labelColor: RikiaTheme.purple,
+          unselectedLabelColor: const Color(0xFF6B7280),
+          tabs: const [
+            Tab(icon: Icon(Icons.home_outlined), text: 'Home'),
+            Tab(icon: Icon(Icons.search), text: 'Search'),
+            Tab(icon: Icon(Icons.notifications_outlined), text: 'Alerts'),
+            Tab(icon: Icon(Icons.person_outline), text: 'Profile'),
           ],
         ),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: const [
+          FeedScreen(),
+          SearchScreen(),
+          NotificationsScreen(),
+          ProfileScreen(),
+        ],
       ),
     );
   }
