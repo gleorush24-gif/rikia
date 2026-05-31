@@ -8,6 +8,8 @@ class RikiaTheme {
   static const Color orange = Color(0xFFFF6B35);
   static const Color yellow = Color(0xFFFFB830);
   static const Color green = Color(0xFF4CAF7D);
+  static const Color red = Color(0xFFE53935);
+  static const Color violet = Color(0xFF9B6DD6);
 
   // App colors - light theme
   static const Color background = Color(0xFFF8F9FE);
@@ -91,7 +93,7 @@ class RikiaTheme {
         hintStyle: const TextStyle(color: textSecondary),
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: surface,
         elevation: 2,
         shadowColor: Colors.black12,

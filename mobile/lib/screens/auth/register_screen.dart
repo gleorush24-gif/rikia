@@ -124,13 +124,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 decoration: BoxDecoration(
-                  color: Colors.whiteLight,
+                  color: const Color(0xFFF5F5F5),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
                     value: _province,
-                    dropdownColor: Colors.whiteLight,
+                    dropdownColor: const Color(0xFFF5F5F5),
                     isExpanded: true,
                     style: const TextStyle(color: const Color(0xFF1A1A2E)),
                     items: _provinces.map((p) => DropdownMenuItem(
