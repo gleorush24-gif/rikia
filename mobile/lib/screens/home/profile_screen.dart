@@ -53,6 +53,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _showCreatePost(context),
+        backgroundColor: RikiaTheme.purple,
+        child: const Icon(Icons.add, color: Colors.white),
+      ),
       body: _loading
         ? const Center(child: CircularProgressIndicator())
         : RefreshIndicator(
@@ -149,6 +154,73 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
           ),
+    );
+  }
+
+  void _showCreatePost(BuildContext context) {
+    final captionController = TextEditingController();
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.white,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => Padding(
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+          left: 16, right: 16, top: 16,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text('New Post',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
+            const SizedBox(height: 16),
+            TextField(
+              controller: captionController,
+              maxLines: 4,
+              autofocus: true,
+              decoration: InputDecoration(
+                hintText: "What\'s on your mind?",
+                filled: true,
+                fillColor: const Color(0xFFF5F5F5),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: RikiaTheme.buttonGradient,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: ElevatedButton(
+                  onPressed: () async {
+                    if (captionController.text.isEmpty) return;
+                    await ApiService.createPost(caption: captionController.text);
+                    if (!context.mounted) return;
+                    Navigator.pop(context);
+                    _load();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    shadowColor: Colors.transparent,
+                  ),
+                  child: const Text('Post',
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+          ],
+        ),
+      ),
     );
   }
 
