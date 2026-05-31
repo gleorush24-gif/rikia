@@ -22,6 +22,7 @@ func main() {
 	db.MigrateNotifications()
 
 	r := gin.Default()
+	r.Use(middleware.CORS())
 
 	r.GET("/health", func(c *gin.Context) {
 		c.JSON(200, gin.H{"service": "rikia-api", "status": "ok"})
