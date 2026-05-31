@@ -31,7 +31,7 @@ class _FeedScreenState extends State<FeedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: RikiaTheme.background,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: ShaderMask(
           shaderCallback: (bounds) =>
@@ -62,7 +62,7 @@ class _FeedScreenState extends State<FeedScreen> {
                   child: Text(
                     'No posts yet.\nFollow people to see their posts!',
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: RikiaTheme.textSecondary),
+                    style: TextStyle(color: const Color(0xFF6B7280)),
                   ),
                 )
               : ListView.builder(
@@ -79,7 +79,7 @@ class _FeedScreenState extends State<FeedScreen> {
     final captionController = TextEditingController();
     showModalBottomSheet(
       context: context,
-      backgroundColor: RikiaTheme.surface,
+      backgroundColor: Colors.white,
       isScrollControlled: true,
       builder: (context) => Padding(
         padding: EdgeInsets.only(
@@ -91,7 +91,7 @@ class _FeedScreenState extends State<FeedScreen> {
           children: [
             const Text('New Post',
               style: TextStyle(
-                color: RikiaTheme.textPrimary,
+                color: const Color(0xFF1A1A2E),
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
               ),
@@ -101,7 +101,7 @@ class _FeedScreenState extends State<FeedScreen> {
               controller: captionController,
               autofocus: true,
               maxLines: 4,
-              style: const TextStyle(color: RikiaTheme.textPrimary),
+              style: const TextStyle(color: const Color(0xFF1A1A2E)),
               decoration: const InputDecoration(
                 hintText: "What's on your mind?",
               ),
@@ -152,7 +152,7 @@ class _PostCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 1),
-      color: RikiaTheme.surface,
+      color: Colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -187,7 +187,7 @@ class _PostCard extends StatelessWidget {
                     Text(
                       post['username'] ?? '',
                       style: const TextStyle(
-                        color: RikiaTheme.textPrimary,
+                        color: const Color(0xFF1A1A2E),
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -195,7 +195,7 @@ class _PostCard extends StatelessWidget {
                       Text(
                         post['location'],
                         style: const TextStyle(
-                          color: RikiaTheme.textSecondary,
+                          color: const Color(0xFF6B7280),
                           fontSize: 12,
                         ),
                       ),
@@ -210,7 +210,7 @@ class _PostCard extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Text(
                 post['caption'],
-                style: const TextStyle(color: RikiaTheme.textPrimary, fontSize: 15),
+                style: const TextStyle(color: const Color(0xFF1A1A2E), fontSize: 15),
               ),
             ),
           // Image
@@ -237,14 +237,14 @@ class _PostCard extends StatelessWidget {
                 ),
                 Text(
                   '${post['likes_count'] ?? 0}',
-                  style: const TextStyle(color: RikiaTheme.textSecondary),
+                  style: const TextStyle(color: const Color(0xFF6B7280)),
                 ),
                 const SizedBox(width: 8),
-                const Icon(Icons.comment_outlined, color: RikiaTheme.textSecondary),
+                const Icon(Icons.comment_outlined, color: const Color(0xFF6B7280)),
                 const SizedBox(width: 4),
                 Text(
                   '${post['comments_count'] ?? 0}',
-                  style: const TextStyle(color: RikiaTheme.textSecondary),
+                  style: const TextStyle(color: const Color(0xFF6B7280)),
                 ),
               ],
             ),

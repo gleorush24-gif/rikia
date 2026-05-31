@@ -35,7 +35,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: RikiaTheme.background,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(_profile?['username'] ?? 'Profile'),
         actions: [
@@ -88,7 +88,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Text(
                           _profile?['username'] ?? '',
                           style: const TextStyle(
-                            color: RikiaTheme.textPrimary,
+                            color: const Color(0xFF1A1A2E),
                             fontSize: 20,
                             fontWeight: FontWeight.w700,
                           ),
@@ -97,7 +97,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Text(
                             '📍 ${_profile!['province']}',
                             style: const TextStyle(
-                              color: RikiaTheme.textSecondary,
+                              color: const Color(0xFF6B7280),
                               fontSize: 14,
                             ),
                           ),
@@ -114,14 +114,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ],
                     ),
                   ),
-                  const Divider(color: RikiaTheme.divider),
+                  const Divider(color: const Color(0xFFE5E7EB)),
                   // Posts grid
                   _posts.isEmpty
                     ? const Padding(
                         padding: EdgeInsets.all(40),
                         child: Text(
                           'No posts yet',
-                          style: TextStyle(color: RikiaTheme.textSecondary),
+                          style: TextStyle(color: const Color(0xFF6B7280)),
                         ),
                       )
                     : ListView.builder(
@@ -135,12 +135,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               horizontal: 16, vertical: 4),
                             padding: const EdgeInsets.all(12),
                             decoration: BoxDecoration(
-                              color: RikiaTheme.surface,
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Text(
                               post['caption'] ?? '',
-                              style: const TextStyle(color: RikiaTheme.textPrimary),
+                              style: const TextStyle(color: const Color(0xFF1A1A2E)),
                             ),
                           );
                         },
@@ -170,7 +170,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         Text(
           label,
           style: const TextStyle(
-            color: RikiaTheme.textSecondary,
+            color: const Color(0xFF6B7280),
             fontSize: 12,
           ),
         ),

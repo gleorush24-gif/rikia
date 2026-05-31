@@ -30,20 +30,20 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: RikiaTheme.background,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: TextField(
           controller: _searchController,
           autofocus: false,
-          style: const TextStyle(color: RikiaTheme.textPrimary),
+          style: const TextStyle(color: const Color(0xFF1A1A2E)),
           decoration: InputDecoration(
             hintText: 'Search users...',
-            hintStyle: const TextStyle(color: RikiaTheme.textSecondary),
+            hintStyle: const TextStyle(color: const Color(0xFF6B7280)),
             border: InputBorder.none,
-            prefixIcon: const Icon(Icons.search, color: RikiaTheme.textSecondary),
+            prefixIcon: const Icon(Icons.search, color: const Color(0xFF6B7280)),
             suffixIcon: _searchController.text.isNotEmpty
               ? IconButton(
-                  icon: const Icon(Icons.clear, color: RikiaTheme.textSecondary),
+                  icon: const Icon(Icons.clear, color: const Color(0xFF6B7280)),
                   onPressed: () {
                     _searchController.clear();
                     setState(() => _users = []);
@@ -69,7 +69,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   const SizedBox(height: 16),
                   const Text(
                     'Search for people on Rikia',
-                    style: TextStyle(color: RikiaTheme.textSecondary),
+                    style: TextStyle(color: const Color(0xFF6B7280)),
                   ),
                 ],
               ),
@@ -99,18 +99,18 @@ class _SearchScreenState extends State<SearchScreen> {
                   title: Text(
                     user['username'] ?? '',
                     style: const TextStyle(
-                      color: RikiaTheme.textPrimary,
+                      color: const Color(0xFF1A1A2E),
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   subtitle: Text(
                     user['province'] ?? '',
-                    style: const TextStyle(color: RikiaTheme.textSecondary),
+                    style: const TextStyle(color: const Color(0xFF6B7280)),
                   ),
                   trailing: Text(
                     '${user['followers_count']} followers',
                     style: const TextStyle(
-                      color: RikiaTheme.textSecondary,
+                      color: const Color(0xFF6B7280),
                       fontSize: 12,
                     ),
                   ),

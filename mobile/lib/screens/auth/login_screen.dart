@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: RikiaTheme.background,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
@@ -73,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Text(
                   'Welcome back 👋',
                   style: TextStyle(
-                    color: RikiaTheme.textSecondary,
+                    color: const Color(0xFF6B7280),
                     fontSize: 16,
                   ),
                 ),
@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
               // Email field
               const Text('EMAIL',
                 style: TextStyle(
-                  color: RikiaTheme.textSecondary,
+                  color: const Color(0xFF6B7280),
                   fontSize: 11,
                   fontWeight: FontWeight.w700,
                   letterSpacing: 1.5,
@@ -93,17 +93,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 autocorrect: false,
-                style: const TextStyle(color: RikiaTheme.textPrimary),
+                style: const TextStyle(color: const Color(0xFF1A1A2E)),
                 decoration: const InputDecoration(
                   hintText: 'your@email.com',
-                  prefixIcon: Icon(Icons.email_outlined, color: RikiaTheme.textSecondary),
+                  prefixIcon: Icon(Icons.email_outlined, color: const Color(0xFF6B7280)),
                 ),
               ),
               const SizedBox(height: 16),
               // Password field
               const Text('PASSWORD',
                 style: TextStyle(
-                  color: RikiaTheme.textSecondary,
+                  color: const Color(0xFF6B7280),
                   fontSize: 11,
                   fontWeight: FontWeight.w700,
                   letterSpacing: 1.5,
@@ -113,10 +113,10 @@ class _LoginScreenState extends State<LoginScreen> {
               TextField(
                 controller: _passwordController,
                 obscureText: true,
-                style: const TextStyle(color: RikiaTheme.textPrimary),
+                style: const TextStyle(color: const Color(0xFF1A1A2E)),
                 decoration: const InputDecoration(
                   hintText: '••••••••',
-                  prefixIcon: Icon(Icons.lock_outline, color: RikiaTheme.textSecondary),
+                  prefixIcon: Icon(Icons.lock_outline, color: const Color(0xFF6B7280)),
                 ),
                 onSubmitted: (_) => _login(),
               ),
@@ -131,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 52,
                 child: DecoratedBox(
                   decoration: BoxDecoration(
-                    gradient: RikiaTheme.primaryGradient,
+                    gradient: RikiaTheme.buttonGradient,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: ElevatedButton(
@@ -167,7 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: RichText(
                     text: const TextSpan(
                       text: "Don't have an account? ",
-                      style: TextStyle(color: RikiaTheme.textSecondary),
+                      style: TextStyle(color: const Color(0xFF6B7280)),
                       children: [
                         TextSpan(
                           text: 'Sign Up',

@@ -54,11 +54,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: RikiaTheme.background,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: RikiaTheme.background,
+        backgroundColor: Colors.white,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: RikiaTheme.textPrimary),
+          icon: const Icon(Icons.arrow_back, color: const Color(0xFF1A1A2E)),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -83,17 +83,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
               const SizedBox(height: 8),
               const Text(
                 'Create your account',
-                style: TextStyle(color: RikiaTheme.textSecondary, fontSize: 16),
+                style: TextStyle(color: const Color(0xFF6B7280), fontSize: 16),
               ),
               const SizedBox(height: 32),
               _buildLabel('USERNAME'),
               TextField(
                 controller: _usernameController,
                 autocorrect: false,
-                style: const TextStyle(color: RikiaTheme.textPrimary),
+                style: const TextStyle(color: const Color(0xFF1A1A2E)),
                 decoration: const InputDecoration(
                   hintText: 'your_username',
-                  prefixIcon: Icon(Icons.person_outline, color: RikiaTheme.textSecondary),
+                  prefixIcon: Icon(Icons.person_outline, color: const Color(0xFF6B7280)),
                 ),
               ),
               const SizedBox(height: 16),
@@ -102,10 +102,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 autocorrect: false,
-                style: const TextStyle(color: RikiaTheme.textPrimary),
+                style: const TextStyle(color: const Color(0xFF1A1A2E)),
                 decoration: const InputDecoration(
                   hintText: 'your@email.com',
-                  prefixIcon: Icon(Icons.email_outlined, color: RikiaTheme.textSecondary),
+                  prefixIcon: Icon(Icons.email_outlined, color: const Color(0xFF6B7280)),
                 ),
               ),
               const SizedBox(height: 16),
@@ -113,10 +113,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
               TextField(
                 controller: _passwordController,
                 obscureText: true,
-                style: const TextStyle(color: RikiaTheme.textPrimary),
+                style: const TextStyle(color: const Color(0xFF1A1A2E)),
                 decoration: const InputDecoration(
                   hintText: '••••••••',
-                  prefixIcon: Icon(Icons.lock_outline, color: RikiaTheme.textSecondary),
+                  prefixIcon: Icon(Icons.lock_outline, color: const Color(0xFF6B7280)),
                 ),
               ),
               const SizedBox(height: 16),
@@ -124,15 +124,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 decoration: BoxDecoration(
-                  color: RikiaTheme.surfaceLight,
+                  color: Colors.whiteLight,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
                     value: _province,
-                    dropdownColor: RikiaTheme.surfaceLight,
+                    dropdownColor: Colors.whiteLight,
                     isExpanded: true,
-                    style: const TextStyle(color: RikiaTheme.textPrimary),
+                    style: const TextStyle(color: const Color(0xFF1A1A2E)),
                     items: _provinces.map((p) => DropdownMenuItem(
                       value: p,
                       child: Text(p),
@@ -188,7 +188,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: Text(
         text,
         style: const TextStyle(
-          color: RikiaTheme.textSecondary,
+          color: const Color(0xFF6B7280),
           fontSize: 11,
           fontWeight: FontWeight.w700,
           letterSpacing: 1.5,

@@ -59,7 +59,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: RikiaTheme.background,
+      backgroundColor: Colors.white,
       body: Center(
         child: AnimatedBuilder(
           animation: _controller,
@@ -98,7 +98,7 @@ class _SplashScreenState extends State<SplashScreen>
                     const Text(
                       'to see',
                       style: TextStyle(
-                        color: RikiaTheme.textSecondary,
+                        color: const Color(0xFF6B7280),
                         fontSize: 14,
                         letterSpacing: 4,
                       ),

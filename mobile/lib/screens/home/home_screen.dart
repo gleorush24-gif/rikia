@@ -25,12 +25,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: RikiaTheme.background,
+      backgroundColor: Colors.white,
       body: _screens[_currentIndex],
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
           border: Border(
-            top: BorderSide(color: RikiaTheme.divider, width: 0.5),
+            top: BorderSide(color: const Color(0xFFE5E7EB), width: 0.5),
           ),
         ),
         child: BottomNavigationBar(
