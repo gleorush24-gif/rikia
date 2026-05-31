@@ -1,66 +1,71 @@
 import 'package:flutter/material.dart';
 
 class RikiaTheme {
-  // Rainbow colors
-  static const Color red = Color(0xFFFF3B5C);
-  static const Color orange = Color(0xFFFF8C00);
-  static const Color yellow = Color(0xFFFFD700);
-  static const Color green = Color(0xFF00C853);
-  static const Color blue = Color(0xFF2979FF);
-  static const Color indigo = Color(0xFF651FFF);
-  static const Color violet = Color(0xFFD500F9);
+  // Core gradient colors (matching the logo)
+  static const Color blue = Color(0xFF4A90D9);
+  static const Color purple = Color(0xFF9B6DD6);
+  static const Color pink = Color(0xFFE066A0);
+  static const Color orange = Color(0xFFFF6B35);
+  static const Color yellow = Color(0xFFFFB830);
+  static const Color green = Color(0xFF4CAF7D);
 
-  // App colors
-  static const Color background = Color(0xFF0A0A0A);
-  static const Color surface = Color(0xFF1A1A1A);
-  static const Color surfaceLight = Color(0xFF2A2A2A);
-  static const Color textPrimary = Color(0xFFFFFFFF);
-  static const Color textSecondary = Color(0xFF9E9E9E);
-  static const Color divider = Color(0xFF2A2A2A);
+  // App colors - light theme
+  static const Color background = Color(0xFFF8F9FE);
+  static const Color surface = Color(0xFFFFFFFF);
+  static const Color surfaceLight = Color(0xFFF0F2F8);
+  static const Color textPrimary = Color(0xFF1A1A2E);
+  static const Color textSecondary = Color(0xFF6B7280);
+  static const Color divider = Color(0xFFE5E7EB);
 
-  // Rainbow gradient
+  // Main gradient (logo colors)
+  static const LinearGradient mainGradient = LinearGradient(
+    colors: [blue, purple, pink, orange],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  // Button gradient
+  static const LinearGradient buttonGradient = LinearGradient(
+    colors: [blue, purple],
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+  );
+
+  // Rainbow gradient for accents
   static const LinearGradient rainbowGradient = LinearGradient(
-    colors: [red, orange, yellow, green, blue, indigo, violet],
+    colors: [blue, purple, pink, orange, yellow],
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
   );
 
-  // Simpler gradient for buttons
-  static const LinearGradient primaryGradient = LinearGradient(
-    colors: [violet, blue],
-    begin: Alignment.centerLeft,
-    end: Alignment.centerRight,
-  );
-
-  static ThemeData get darkTheme {
+  static ThemeData get lightTheme {
     return ThemeData(
-      brightness: Brightness.dark,
+      brightness: Brightness.light,
       scaffoldBackgroundColor: background,
-      primaryColor: violet,
-      colorScheme: const ColorScheme.dark(
-        primary: violet,
+      primaryColor: purple,
+      colorScheme: const ColorScheme.light(
+        primary: purple,
         secondary: blue,
         surface: surface,
         background: background,
       ),
       appBarTheme: const AppBarTheme(
-        backgroundColor: background,
+        backgroundColor: surface,
         elevation: 0,
         centerTitle: true,
         titleTextStyle: TextStyle(
           color: textPrimary,
           fontSize: 18,
           fontWeight: FontWeight.w700,
-          letterSpacing: 1.0,
         ),
         iconTheme: IconThemeData(color: textPrimary),
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: surface,
-        selectedItemColor: violet,
+        selectedItemColor: purple,
         unselectedItemColor: textSecondary,
         type: BottomNavigationBarType.fixed,
-        elevation: 0,
+        elevation: 8,
       ),
       textTheme: const TextTheme(
         headlineLarge: TextStyle(
@@ -73,14 +78,8 @@ class RikiaTheme {
           fontSize: 22,
           fontWeight: FontWeight.w700,
         ),
-        bodyLarge: TextStyle(
-          color: textPrimary,
-          fontSize: 16,
-        ),
-        bodyMedium: TextStyle(
-          color: textSecondary,
-          fontSize: 14,
-        ),
+        bodyLarge: TextStyle(color: textPrimary, fontSize: 16),
+        bodyMedium: TextStyle(color: textSecondary, fontSize: 14),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
@@ -91,6 +90,12 @@ class RikiaTheme {
         ),
         hintStyle: const TextStyle(color: textSecondary),
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      ),
+      cardTheme: CardTheme(
+        color: surface,
+        elevation: 2,
+        shadowColor: Colors.black12,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       ),
     );
   }

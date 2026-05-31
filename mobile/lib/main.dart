@@ -29,7 +29,7 @@ class RikiaApp extends StatelessWidget {
     return MaterialApp(
       title: 'Rikia',
       debugShowCheckedModeBanner: false,
-      theme: RikiaTheme.darkTheme,
+      theme: RikiaTheme.lightTheme,
       home: const SplashScreen(),
     );
   }
