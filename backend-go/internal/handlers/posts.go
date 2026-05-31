@@ -164,7 +164,7 @@ func (h *PostHandler) DeletePost(c *gin.Context) {
 		return
 	}
 
-	if ownerID.String() != userID {
+	if ownerID != userID {
 		c.JSON(http.StatusForbidden, gin.H{"error": "You can only delete your own posts"})
 		return
 	}
