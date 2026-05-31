@@ -69,8 +69,8 @@ func Migrate() {
 	log.Println("✅ Database migrations complete")
 }
 
-func MigrateNotifications(db *sql.DB) {
-	db.Exec(`CREATE TABLE IF NOT EXISTS notifications (
+func MigrateNotifications() {
+	DB.Exec(`CREATE TABLE IF NOT EXISTS notifications (
 		id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 		user_id UUID REFERENCES users(id) ON DELETE CASCADE,
 		actor_id UUID REFERENCES users(id) ON DELETE CASCADE,

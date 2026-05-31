@@ -19,7 +19,7 @@ func main() {
 
 	db.Connect()
 	db.Migrate()
-	db.MigrateNotifications(db.DB)
+	db.MigrateNotifications()
 
 	r := gin.Default()
 
