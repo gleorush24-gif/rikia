@@ -19,6 +19,7 @@ func main() {
 
 	db.Connect()
 	db.Migrate()
+	db.MigrateNotifications(db.DB)
 
 	r := gin.Default()
 
@@ -31,6 +32,9 @@ func main() {
 	posts := handlers.NewPostHandler(db.DB)
 	interactions := handlers.NewInteractionHandler(db.DB)
 	follows := handlers.NewFollowHandler(db.DB)
+	stories := handlers.NewStoryHandler(db.DB)
+	search := handlers.NewSearchHandler(db.DB)
+	notifications := handlers.NewNotificationHandler(db.DB)
 
 	// Public routes
 	api := r.Group("/api/v1")
@@ -40,6 +44,8 @@ func main() {
 		api.GET("/users/:id", follows.GetProfile)
 		api.GET("/users/:id/followers", follows.GetFollowers)
 		api.GET("/users/:id/following", follows.GetFollowing)
+		api.GET("/search/users", search.SearchUsers)
+		api.GET("/search/posts", search.SearchPosts)
 	}
 
 	// Protected routes
@@ -68,6 +74,15 @@ func main() {
 
 		// Follows
 		protected.POST("/users/:id/follow", follows.Follow)
+
+		// Stories
+		protected.POST("/stories", stories.CreateStory)
+		protected.GET("/stories", stories.GetStories)
+		protected.DELETE("/stories/:id", stories.DeleteStory)
+
+		// Notifications
+		protected.GET("/notifications", notifications.GetNotifications)
+		protected.PUT("/notifications/read", notifications.MarkAsRead)
 	}
 
 	fmt.Printf("👁️  Rikia API running on port %s\n", port)
