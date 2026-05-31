@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:file_picker/file_picker.dart';
+import 'dart:html' as html;
 import '../../services/api_service.dart';
 import '../../theme/app_theme.dart';
 
