@@ -29,6 +29,7 @@ func main() {
 	// Initialize handlers
 	auth := handlers.NewAuthHandler(db.DB)
 	posts := handlers.NewPostHandler(db.DB)
+	interactions := handlers.NewInteractionHandler(db.DB)
 
 	// Public routes
 	api := r.Group("/api/v1")
@@ -52,6 +53,14 @@ func main() {
 		protected.GET("/feed", posts.GetFeed)
 		protected.GET("/posts/:id", posts.GetPost)
 		protected.DELETE("/posts/:id", posts.DeletePost)
+
+		// Likes
+		protected.POST("/posts/:id/like", interactions.LikePost)
+
+		// Comments
+		protected.POST("/posts/:id/comments", interactions.AddComment)
+		protected.GET("/posts/:id/comments", interactions.GetComments)
+		protected.DELETE("/comments/:id", interactions.DeleteComment)
 	}
 
 	fmt.Printf("👁️  Rikia API running on port %s\n", port)
