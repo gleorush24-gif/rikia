@@ -250,3 +250,194 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
+
+class _CreatePostSheet extends StatefulWidget {
+  final VoidCallback onPosted;
+  const _CreatePostSheet({required this.onPosted});
+
+  @override
+  State<_CreatePostSheet> createState() => _CreatePostSheetState();
+}
+
+class _CreatePostSheetState extends State<_CreatePostSheet> {
+  final _captionController = TextEditingController();
+  final _locationController = TextEditingController();
+  String? _pickedImageBase64;
+  bool _posting = false;
+  int _selectedTab = 0;
+
+  Future<void> _pickImage() async {
+    final input = html.FileUploadInputElement()..accept = 'image/*';
+    input.click();
+    await input.onChange.first;
+    if (input.files == null || input.files!.isEmpty) return;
+    final file = input.files![0];
+    final reader = html.FileReader();
+    reader.readAsDataUrl(file);
+    await reader.onLoad.first;
+    setState(() {
+      _pickedImageBase64 = reader.result as String;
+    });
+  }
+
+  Future<void> _post() async {
+    if (_captionController.text.isEmpty && _pickedImageBase64 == null) return;
+    setState(() => _posting = true);
+    String imageUrl = '';
+    if (_pickedImageBase64 != null) {
+      imageUrl = await ApiService.uploadImage(_pickedImageBase64!) ?? '';
+    }
+    await ApiService.createPost(
+      caption: _captionController.text,
+      imageUrl: imageUrl,
+      location: _locationController.text,
+    );
+    if (mounted) {
+      Navigator.pop(context);
+      widget.onPosted();
+    }
+  }
+
+  Widget _tab(int index, String label) {
+    final isSelected = index == _selectedTab;
+    return GestureDetector(
+      onTap: () => setState(() => _selectedTab = index),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          gradient: isSelected ? RikiaTheme.buttonGradient : null,
+          color: isSelected ? null : const Color(0xFFF5F5F5),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Text(label,
+          style: TextStyle(
+            color: isSelected ? Colors.white : const Color(0xFF6B7280),
+            fontWeight: FontWeight.w600,
+            fontSize: 13,
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewInsets.bottom,
+        left: 16, right: 16, top: 16,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text('New Post',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
+              IconButton(
+                icon: const Icon(Icons.close),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              _tab(0, '📝 Text'),
+              const SizedBox(width: 8),
+              _tab(1, '🖼 Photo'),
+            ],
+          ),
+          const SizedBox(height: 16),
+          TextField(
+            controller: _captionController,
+            maxLines: 3,
+            autofocus: true,
+            decoration: InputDecoration(
+              hintText: "What's on your mind?",
+              filled: true,
+              fillColor: const Color(0xFFF5F5F5),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide.none,
+              ),
+            ),
+          ),
+          const SizedBox(height: 12),
+          if (_selectedTab == 1)
+            GestureDetector(
+              onTap: _pickImage,
+              child: Container(
+                width: double.infinity,
+                height: 150,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF5F5F5),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: const Color(0xFFE5E7EB)),
+                ),
+                child: _pickedImageBase64 != null
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.memory(
+                        base64Decode(_pickedImageBase64!.split(',')[1]),
+                        fit: BoxFit.cover,
+                      ),
+                    )
+                  : const Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.add_photo_alternate_outlined,
+                          size: 48, color: Color(0xFF6B7280)),
+                        SizedBox(height: 8),
+                        Text('Tap to pick from gallery',
+                          style: TextStyle(color: Color(0xFF6B7280))),
+                      ],
+                    ),
+              ),
+            ),
+          if (_selectedTab == 1) const SizedBox(height: 12),
+          TextField(
+            controller: _locationController,
+            decoration: InputDecoration(
+              hintText: 'Add location (optional)',
+              prefixIcon: const Icon(Icons.location_on_outlined,
+                color: Color(0xFF6B7280)),
+              filled: true,
+              fillColor: const Color(0xFFF5F5F5),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide.none,
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+          SizedBox(
+            width: double.infinity,
+            height: 50,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: RikiaTheme.buttonGradient,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: ElevatedButton(
+                onPressed: _posting ? null : _post,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent,
+                ),
+                child: _posting
+                  ? const CircularProgressIndicator(color: Colors.white)
+                  : const Text('Post',
+                      style: TextStyle(color: Colors.white,
+                        fontWeight: FontWeight.w700, fontSize: 16)),
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+        ],
+      ),
+    );
+  }
+}
