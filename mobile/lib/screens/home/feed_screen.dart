@@ -1,6 +1,7 @@
 import 'dart:convert';
+import 'package:universal_html/html.dart' as html;
 import 'package:flutter/material.dart';
-import 'dart:html' as html;
+
 import '../../services/api_service.dart';
 import '../../theme/app_theme.dart';
 
@@ -89,17 +90,17 @@ class _CreatePostSheetState extends State<_CreatePostSheet> {
   bool _posting = false;
 
   Future<void> _pickImage() async {
-    final picker = ImagePicker();
-    final picked = await picker.pickImage(
-      source: ImageSource.gallery,
-      imageQuality: 80,
-    );
-    if (picked != null) {
-      final bytes = await picked.readAsBytes();
-      setState(() {
-        _pickedImageBase64 = 'data:image/jpeg;base64,${base64Encode(bytes)}';
-      });
-    }
+    final input = html.FileUploadInputElement()..accept = 'image/*';
+    input.click();
+    await input.onChange.first;
+    if (input.files == null || input.files!.isEmpty) return;
+    final file = input.files![0];
+    final reader = html.FileReader();
+    reader.readAsDataUrl(file);
+    await reader.onLoad.first;
+    setState(() {
+      _pickedImageBase64 = reader.result as String;
+    });
   }
 
   Future<void> _post() async {
