@@ -65,6 +65,9 @@ func (h *FollowHandler) Follow(c *gin.Context) {
 		h.db.Exec(`UPDATE users SET following_count = following_count + 1 WHERE id::text=$1`, followerID)
 		h.db.Exec(`UPDATE users SET followers_count = followers_count + 1 WHERE id::text=$1`, followingID)
 
+		// Notify the user being followed
+		CreateNotification(h.db, followingID, followerID, "follow", "started following you")
+
 		c.JSON(http.StatusOK, gin.H{"following": true, "message": "Following!"})
 	}
 }
