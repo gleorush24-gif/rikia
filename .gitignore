@@ -1,3 +1,4 @@
 .env
 backend-go/rikia-api
 .DS_Store
+!mobile/build/web
