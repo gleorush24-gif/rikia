@@ -41,6 +41,12 @@ func (h *InteractionHandler) LikePost(c *gin.Context) {
 			UPDATE posts SET likes_count = likes_count + 1 
 			WHERE id::text=$1`, postID)
 
+		// Notify post owner
+		var postOwnerID string
+		h.db.QueryRow(`SELECT user_id FROM posts WHERE id::text=$1`, postID).Scan(&postOwnerID)
+		if postOwnerID != userID {
+			CreateNotification(h.db, postOwnerID, userID, "like", "liked your post")
+		}
 		c.JSON(http.StatusOK, gin.H{"liked": true, "message": "Post liked!"})
 	} else {
 		// Already liked — remove like (unlike)
