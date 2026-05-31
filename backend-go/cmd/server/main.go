@@ -17,36 +17,41 @@ func main() {
 		port = "8080"
 	}
 
-	// Connect to database and run migrations
 	db.Connect()
 	db.Migrate()
 
 	r := gin.Default()
 
-	// Health check
 	r.GET("/health", func(c *gin.Context) {
 		c.JSON(200, gin.H{"service": "rikia-api", "status": "ok"})
 	})
 
 	// Initialize handlers
 	auth := handlers.NewAuthHandler(db.DB)
+	posts := handlers.NewPostHandler(db.DB)
 
-	// Public routes — no token needed
+	// Public routes
 	api := r.Group("/api/v1")
 	{
 		api.POST("/auth/register", auth.Register)
 		api.POST("/auth/login", auth.Login)
 	}
 
-	// Protected routes — token required
+	// Protected routes
 	protected := api.Group("/")
 	protected.Use(middleware.AuthRequired())
 	{
-		// We will add more routes here soon
+		// User
 		protected.GET("/me", func(c *gin.Context) {
 			userID := c.GetString("user_id")
 			c.JSON(200, gin.H{"user_id": userID, "message": "You are authenticated!"})
 		})
+
+		// Posts
+		protected.POST("/posts", posts.CreatePost)
+		protected.GET("/feed", posts.GetFeed)
+		protected.GET("/posts/:id", posts.GetPost)
+		protected.DELETE("/posts/:id", posts.DeletePost)
 	}
 
 	fmt.Printf("👁️  Rikia API running on port %s\n", port)
