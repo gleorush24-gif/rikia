@@ -129,128 +129,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           style: TextStyle(color: const Color(0xFF6B7280)),
                         ),
                       )
-                    : ListView.builder(
+                    : GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
+                        padding: const EdgeInsets.all(4),
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 2,
+                          mainAxisSpacing: 2,
+                        ),
                         itemCount: _posts.length,
                         itemBuilder: (context, index) {
                           final post = _posts[index];
-                          return Container(
-                            margin: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 4),
-                            padding: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Text(
-                              post['caption'] ?? '',
-                              style: const TextStyle(color: const Color(0xFF1A1A2E)),
-                            ),
+                          return ClipRRect(
+                            borderRadius: BorderRadius.circular(4),
+                            child: post['image_url'] != null && post['image_url'] != ''
+                              ? Image.network(
+                                  post['image_url'],
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (_, __, ___) => _textPostTile(post),
+                                )
+                              : _textPostTile(post),
                           );
                         },
                       ),
-                ],
-              ),
-            ),
-          ),
-    );
-  }
-
-  void _showCreatePost(BuildContext context) {
-    final captionController = TextEditingController();
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.white,
-      isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (context) => Padding(
-        padding: EdgeInsets.only(
-          bottom: MediaQuery.of(context).viewInsets.bottom,
-          left: 16, right: 16, top: 16,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text('New Post',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
-            const SizedBox(height: 16),
-            TextField(
-              controller: captionController,
-              maxLines: 4,
-              autofocus: true,
-              decoration: InputDecoration(
-                hintText: "What\'s on your mind?",
-                filled: true,
-                fillColor: const Color(0xFFF5F5F5),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: RikiaTheme.buttonGradient,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: ElevatedButton(
-                  onPressed: () async {
-                    if (captionController.text.isEmpty) return;
-                    await ApiService.createPost(caption: captionController.text);
-                    if (!context.mounted) return;
-                    Navigator.pop(context);
-                    _load();
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent,
-                    shadowColor: Colors.transparent,
-                  ),
-                  child: const Text('Post',
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _stat(String value, String label) {
-    return Column(
-      children: [
-        ShaderMask(
-          shaderCallback: (bounds) =>
-              RikiaTheme.rainbowGradient.createShader(bounds),
-          child: Text(
-            value,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 22,
-              fontWeight: FontWeight.w800,
-            ),
-          ),
-        ),
-        Text(
-          label,
-          style: const TextStyle(
-            color: const Color(0xFF6B7280),
-            fontSize: 12,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
 class _CreatePostSheet extends StatefulWidget {
   final VoidCallback onPosted;
   const _CreatePostSheet({required this.onPosted});
