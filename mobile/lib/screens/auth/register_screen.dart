@@ -54,11 +54,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFFCE4EC),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color(0xFFFCE4EC),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: const Color(0xFF1A1A2E)),
+          icon: const Icon(Icons.arrow_back, color: const Color(0xFF1565C0)),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -76,24 +76,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.w900,
-                    color: Colors.white,
+                    color: const Color(0xFFFCE4EC),
                   ),
                 ),
               ),
               const SizedBox(height: 8),
               const Text(
                 'Create your account',
-                style: TextStyle(color: const Color(0xFF6B7280), fontSize: 16),
+                style: TextStyle(color: const Color(0xFF1976D2), fontSize: 16),
               ),
               const SizedBox(height: 32),
               _buildLabel('USERNAME'),
               TextField(
                 controller: _usernameController,
                 autocorrect: false,
-                style: const TextStyle(color: const Color(0xFF1A1A2E)),
+                style: const TextStyle(color: const Color(0xFF1565C0)),
                 decoration: const InputDecoration(
                   hintText: 'your_username',
-                  prefixIcon: Icon(Icons.person_outline, color: const Color(0xFF6B7280)),
+                  prefixIcon: Icon(Icons.person_outline, color: const Color(0xFF1976D2)),
                 ),
               ),
               const SizedBox(height: 16),
@@ -102,10 +102,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 autocorrect: false,
-                style: const TextStyle(color: const Color(0xFF1A1A2E)),
+                style: const TextStyle(color: const Color(0xFF1565C0)),
                 decoration: const InputDecoration(
                   hintText: 'your@email.com',
-                  prefixIcon: Icon(Icons.email_outlined, color: const Color(0xFF6B7280)),
+                  prefixIcon: Icon(Icons.email_outlined, color: const Color(0xFF1976D2)),
                 ),
               ),
               const SizedBox(height: 16),
@@ -113,10 +113,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
               TextField(
                 controller: _passwordController,
                 obscureText: true,
-                style: const TextStyle(color: const Color(0xFF1A1A2E)),
+                style: const TextStyle(color: const Color(0xFF1565C0)),
                 decoration: const InputDecoration(
                   hintText: '••••••••',
-                  prefixIcon: Icon(Icons.lock_outline, color: const Color(0xFF6B7280)),
+                  prefixIcon: Icon(Icons.lock_outline, color: const Color(0xFF1976D2)),
                 ),
               ),
               const SizedBox(height: 16),
@@ -124,15 +124,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFF5F5F5),
+                  color: const Color(0xFFF8BBD0),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
                     value: _province,
-                    dropdownColor: const Color(0xFFF5F5F5),
+                    dropdownColor: const Color(0xFFF8BBD0),
                     isExpanded: true,
-                    style: const TextStyle(color: const Color(0xFF1A1A2E)),
+                    style: const TextStyle(color: const Color(0xFF1565C0)),
                     items: _provinces.map((p) => DropdownMenuItem(
                       value: p,
                       child: Text(p),
@@ -163,13 +163,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                     child: _loading
-                      ? const CircularProgressIndicator(color: Colors.white)
+                      ? const CircularProgressIndicator(color: const Color(0xFFFCE4EC))
                       : const Text(
                           'Create Account',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
-                            color: Colors.white,
+                            color: const Color(0xFFFCE4EC),
                           ),
                         ),
                   ),
@@ -188,7 +188,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: Text(
         text,
         style: const TextStyle(
-          color: const Color(0xFF6B7280),
+          color: const Color(0xFF1976D2),
           fontSize: 11,
           fontWeight: FontWeight.w700,
           letterSpacing: 1.5,

@@ -48,7 +48,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFFCE4EC),
       appBar: AppBar(title: const Text('Notifications')),
       body: _loading
         ? const Center(child: CircularProgressIndicator())
@@ -56,7 +56,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           ? const Center(
               child: Text(
                 'No notifications yet',
-                style: TextStyle(color: const Color(0xFF6B7280)),
+                style: TextStyle(color: const Color(0xFF1976D2)),
               ),
             )
           : ListView.builder(
@@ -80,13 +80,13 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                         TextSpan(
                           text: '${n['username']} ',
                           style: const TextStyle(
-                            color: const Color(0xFF1A1A2E),
+                            color: const Color(0xFF1565C0),
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                         TextSpan(
                           text: n['message'] ?? '',
-                          style: const TextStyle(color: const Color(0xFF6B7280)),
+                          style: const TextStyle(color: const Color(0xFF1976D2)),
                         ),
                       ],
                     ),

@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFFCE4EC),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextStyle(
                       fontSize: 48,
                       fontWeight: FontWeight.w900,
-                      color: Colors.white,
+                      color: const Color(0xFFFCE4EC),
                       letterSpacing: 8,
                     ),
                   ),
@@ -73,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Text(
                   'Welcome back 👋',
                   style: TextStyle(
-                    color: const Color(0xFF6B7280),
+                    color: const Color(0xFF1976D2),
                     fontSize: 16,
                   ),
                 ),
@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
               // Email field
               const Text('EMAIL',
                 style: TextStyle(
-                  color: const Color(0xFF6B7280),
+                  color: const Color(0xFF1976D2),
                   fontSize: 11,
                   fontWeight: FontWeight.w700,
                   letterSpacing: 1.5,
@@ -93,17 +93,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 autocorrect: false,
-                style: const TextStyle(color: const Color(0xFF1A1A2E)),
+                style: const TextStyle(color: const Color(0xFF1565C0)),
                 decoration: const InputDecoration(
                   hintText: 'your@email.com',
-                  prefixIcon: Icon(Icons.email_outlined, color: const Color(0xFF6B7280)),
+                  prefixIcon: Icon(Icons.email_outlined, color: const Color(0xFF1976D2)),
                 ),
               ),
               const SizedBox(height: 16),
               // Password field
               const Text('PASSWORD',
                 style: TextStyle(
-                  color: const Color(0xFF6B7280),
+                  color: const Color(0xFF1976D2),
                   fontSize: 11,
                   fontWeight: FontWeight.w700,
                   letterSpacing: 1.5,
@@ -113,10 +113,10 @@ class _LoginScreenState extends State<LoginScreen> {
               TextField(
                 controller: _passwordController,
                 obscureText: true,
-                style: const TextStyle(color: const Color(0xFF1A1A2E)),
+                style: const TextStyle(color: const Color(0xFF1565C0)),
                 decoration: const InputDecoration(
                   hintText: '••••••••',
-                  prefixIcon: Icon(Icons.lock_outline, color: const Color(0xFF6B7280)),
+                  prefixIcon: Icon(Icons.lock_outline, color: const Color(0xFF1976D2)),
                 ),
                 onSubmitted: (_) => _login(),
               ),
@@ -144,13 +144,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     child: _loading
-                      ? const CircularProgressIndicator(color: Colors.white)
+                      ? const CircularProgressIndicator(color: const Color(0xFFFCE4EC))
                       : const Text(
                           'Sign In',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
-                            color: Colors.white,
+                            color: const Color(0xFFFCE4EC),
                           ),
                         ),
                   ),
@@ -167,7 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: RichText(
                     text: const TextSpan(
                       text: "Don't have an account? ",
-                      style: TextStyle(color: const Color(0xFF6B7280)),
+                      style: TextStyle(color: const Color(0xFF1976D2)),
                       children: [
                         TextSpan(
                           text: 'Sign Up',

@@ -34,11 +34,11 @@ class _FeedScreenState extends State<FeedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8F9FE),
+      backgroundColor: const Color(0xFFFCE4EC),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showCreatePost(context),
         backgroundColor: RikiaTheme.purple,
-        child: const Icon(Icons.add, color: Colors.white),
+        child: const Icon(Icons.add, color: const Color(0xFFFCE4EC)),
       ),
       body: _loading
         ? const Center(child: CircularProgressIndicator())
@@ -65,7 +65,7 @@ class _FeedScreenState extends State<FeedScreen> {
   void _showCreatePost(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFFCE4EC),
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -162,7 +162,7 @@ class _CreatePostSheetState extends State<_CreatePostSheet> {
             decoration: InputDecoration(
               hintText: "What's on your mind?",
               filled: true,
-              fillColor: const Color(0xFFF5F5F5),
+              fillColor: const Color(0xFFF8BBD0),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide.none,
@@ -178,7 +178,7 @@ class _CreatePostSheetState extends State<_CreatePostSheet> {
                 width: double.infinity,
                 height: 150,
                 decoration: BoxDecoration(
-                  color: const Color(0xFFF5F5F5),
+                  color: const Color(0xFFF8BBD0),
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(color: const Color(0xFFE5E7EB)),
                 ),
@@ -211,7 +211,7 @@ class _CreatePostSheetState extends State<_CreatePostSheet> {
               prefixIcon: const Icon(Icons.location_on_outlined,
                 color: Color(0xFF6B7280)),
               filled: true,
-              fillColor: const Color(0xFFF5F5F5),
+              fillColor: const Color(0xFFF8BBD0),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide.none,
@@ -237,9 +237,9 @@ class _CreatePostSheetState extends State<_CreatePostSheet> {
                   ),
                 ),
                 child: _posting
-                  ? const CircularProgressIndicator(color: Colors.white)
+                  ? const CircularProgressIndicator(color: const Color(0xFFFCE4EC))
                   : const Text('Post',
-                      style: TextStyle(color: Colors.white,
+                      style: TextStyle(color: const Color(0xFFFCE4EC),
                         fontWeight: FontWeight.w700, fontSize: 16)),
               ),
             ),
@@ -258,12 +258,12 @@ class _CreatePostSheetState extends State<_CreatePostSheet> {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
           gradient: isSelected ? RikiaTheme.buttonGradient : null,
-          color: isSelected ? null : const Color(0xFFF5F5F5),
+          color: isSelected ? null : const Color(0xFFF8BBD0),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Text(label,
           style: TextStyle(
-            color: isSelected ? Colors.white : const Color(0xFF6B7280),
+            color: isSelected ? const Color(0xFFFCE4EC) : const Color(0xFF1976D2),
             fontWeight: FontWeight.w600,
             fontSize: 13,
           ),
@@ -284,7 +284,7 @@ class _PostCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color(0xFFFCE4EC),
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
@@ -312,7 +312,7 @@ class _PostCard extends StatelessWidget {
                     child: Text(
                       (post['username'] ?? '?')[0].toUpperCase(),
                       style: const TextStyle(
-                        color: Colors.white,
+                        color: const Color(0xFFFCE4EC),
                         fontWeight: FontWeight.w700,
                         fontSize: 16,
                       ),

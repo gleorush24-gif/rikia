@@ -31,9 +31,9 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFFCE4EC),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color(0xFFFCE4EC),
         elevation: 0,
         title: ShaderMask(
           shaderCallback: (bounds) =>
@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen>
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.w900,
-              color: Colors.white,
+              color: const Color(0xFFFCE4EC),
               letterSpacing: 4,
             ),
           ),
@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen>
           indicatorColor: RikiaTheme.purple,
           indicatorWeight: 3,
           labelColor: RikiaTheme.purple,
-          unselectedLabelColor: const Color(0xFF6B7280),
+          unselectedLabelColor: const Color(0xFF1976D2),
           tabs: const [
             Tab(icon: Icon(Icons.home_outlined), text: 'Home'),
             Tab(icon: Icon(Icons.search), text: 'Search'),

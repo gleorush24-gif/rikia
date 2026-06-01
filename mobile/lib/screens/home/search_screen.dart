@@ -30,20 +30,20 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFFCE4EC),
       appBar: AppBar(
         title: TextField(
           controller: _searchController,
           autofocus: false,
-          style: const TextStyle(color: const Color(0xFF1A1A2E)),
+          style: const TextStyle(color: const Color(0xFF1565C0)),
           decoration: InputDecoration(
             hintText: 'Search users...',
-            hintStyle: const TextStyle(color: const Color(0xFF6B7280)),
+            hintStyle: const TextStyle(color: const Color(0xFF1976D2)),
             border: InputBorder.none,
-            prefixIcon: const Icon(Icons.search, color: const Color(0xFF6B7280)),
+            prefixIcon: const Icon(Icons.search, color: const Color(0xFF1976D2)),
             suffixIcon: _searchController.text.isNotEmpty
               ? IconButton(
-                  icon: const Icon(Icons.clear, color: const Color(0xFF6B7280)),
+                  icon: const Icon(Icons.clear, color: const Color(0xFF1976D2)),
                   onPressed: () {
                     _searchController.clear();
                     setState(() => _users = []);
@@ -64,12 +64,12 @@ class _SearchScreenState extends State<SearchScreen> {
                   ShaderMask(
                     shaderCallback: (bounds) =>
                         RikiaTheme.rainbowGradient.createShader(bounds),
-                    child: const Icon(Icons.search, size: 64, color: Colors.white),
+                    child: const Icon(Icons.search, size: 64, color: const Color(0xFFFCE4EC)),
                   ),
                   const SizedBox(height: 16),
                   const Text(
                     'Search for people on Rikia',
-                    style: TextStyle(color: const Color(0xFF6B7280)),
+                    style: TextStyle(color: const Color(0xFF1976D2)),
                   ),
                 ],
               ),
@@ -90,7 +90,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       child: Text(
                         (user['username'] ?? '?')[0].toUpperCase(),
                         style: const TextStyle(
-                          color: Colors.white,
+                          color: const Color(0xFFFCE4EC),
                           fontWeight: FontWeight.w700,
                         ),
                       ),
@@ -99,18 +99,18 @@ class _SearchScreenState extends State<SearchScreen> {
                   title: Text(
                     user['username'] ?? '',
                     style: const TextStyle(
-                      color: const Color(0xFF1A1A2E),
+                      color: const Color(0xFF1565C0),
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   subtitle: Text(
                     user['province'] ?? '',
-                    style: const TextStyle(color: const Color(0xFF6B7280)),
+                    style: const TextStyle(color: const Color(0xFF1976D2)),
                   ),
                   trailing: Text(
                     '${user['followers_count']} followers',
                     style: const TextStyle(
-                      color: const Color(0xFF6B7280),
+                      color: const Color(0xFF1976D2),
                       fontSize: 12,
                     ),
                   ),
