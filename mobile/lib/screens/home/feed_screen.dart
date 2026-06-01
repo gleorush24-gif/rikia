@@ -52,11 +52,16 @@ class _FeedScreenState extends State<FeedScreen> {
                     style: TextStyle(color: Color(0xFF6B7280)),
                   ),
                 )
-              : ListView.builder(
-                  itemCount: _posts.length,
-                  itemBuilder: (context, index) {
-                    return _PostCard(post: _posts[index], onRefresh: _loadFeed);
-                  },
+              : Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 600),
+                    child: ListView.builder(
+                      itemCount: _posts.length,
+                      itemBuilder: (context, index) {
+                        return _PostCard(post: _posts[index], onRefresh: _loadFeed);
+                      },
+                    ),
+                  ),
                 ),
           ),
     );
