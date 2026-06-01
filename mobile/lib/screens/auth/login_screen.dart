@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFCE4EC),
+      backgroundColor: const Color(0xFFAD1457),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextStyle(
                       fontSize: 48,
                       fontWeight: FontWeight.w900,
-                      color: const Color(0xFFFCE4EC),
+                      color: const Color(0xFFAD1457),
                       letterSpacing: 8,
                     ),
                   ),
@@ -144,13 +144,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     child: _loading
-                      ? const CircularProgressIndicator(color: const Color(0xFFFCE4EC))
+                      ? const CircularProgressIndicator(color: const Color(0xFFAD1457))
                       : const Text(
                           'Sign In',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
-                            color: const Color(0xFFFCE4EC),
+                            color: const Color(0xFFAD1457),
                           ),
                         ),
                   ),

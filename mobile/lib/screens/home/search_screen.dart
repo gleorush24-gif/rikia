@@ -30,7 +30,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFCE4EC),
+      backgroundColor: const Color(0xFFAD1457),
       appBar: AppBar(
         title: TextField(
           controller: _searchController,
@@ -64,7 +64,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   ShaderMask(
                     shaderCallback: (bounds) =>
                         RikiaTheme.rainbowGradient.createShader(bounds),
-                    child: const Icon(Icons.search, size: 64, color: const Color(0xFFFCE4EC)),
+                    child: const Icon(Icons.search, size: 64, color: const Color(0xFFAD1457)),
                   ),
                   const SizedBox(height: 16),
                   const Text(
@@ -90,7 +90,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       child: Text(
                         (user['username'] ?? '?')[0].toUpperCase(),
                         style: const TextStyle(
-                          color: const Color(0xFFFCE4EC),
+                          color: const Color(0xFFAD1457),
                           fontWeight: FontWeight.w700,
                         ),
                       ),

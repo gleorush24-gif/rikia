@@ -48,7 +48,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFCE4EC),
+      backgroundColor: const Color(0xFFAD1457),
       appBar: AppBar(title: const Text('Notifications')),
       body: _loading
         ? const Center(child: CircularProgressIndicator())

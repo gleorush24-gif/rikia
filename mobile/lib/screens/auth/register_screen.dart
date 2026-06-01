@@ -54,9 +54,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFCE4EC),
+      backgroundColor: const Color(0xFFAD1457),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFCE4EC),
+        backgroundColor: const Color(0xFFAD1457),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: const Color(0xFF1565C0)),
           onPressed: () => Navigator.pop(context),
@@ -76,7 +76,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.w900,
-                    color: const Color(0xFFFCE4EC),
+                    color: const Color(0xFFAD1457),
                   ),
                 ),
               ),
@@ -124,13 +124,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFF8BBD0),
+                  color: const Color(0xFF880E4F),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
                     value: _province,
-                    dropdownColor: const Color(0xFFF8BBD0),
+                    dropdownColor: const Color(0xFF880E4F),
                     isExpanded: true,
                     style: const TextStyle(color: const Color(0xFF1565C0)),
                     items: _provinces.map((p) => DropdownMenuItem(
@@ -163,13 +163,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                     child: _loading
-                      ? const CircularProgressIndicator(color: const Color(0xFFFCE4EC))
+                      ? const CircularProgressIndicator(color: const Color(0xFFAD1457))
                       : const Text(
                           'Create Account',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
-                            color: const Color(0xFFFCE4EC),
+                            color: const Color(0xFFAD1457),
                           ),
                         ),
                   ),

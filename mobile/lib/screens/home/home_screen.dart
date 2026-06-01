@@ -31,9 +31,9 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFCE4EC),
+      backgroundColor: const Color(0xFFAD1457),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFCE4EC),
+        backgroundColor: const Color(0xFFAD1457),
         elevation: 0,
         title: ShaderMask(
           shaderCallback: (bounds) =>
@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen>
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.w900,
-              color: const Color(0xFFFCE4EC),
+              color: const Color(0xFFAD1457),
               letterSpacing: 4,
             ),
           ),
